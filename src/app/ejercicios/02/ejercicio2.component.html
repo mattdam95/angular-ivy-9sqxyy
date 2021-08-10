@@ -1,0 +1,61 @@
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Es mayor de edad</th>
+    <th>Jubilación</th>
+  </tr>
+  <tr class="menor">
+    <td>Juan</td>
+    <td>13</td>
+    <td>No</td>
+    <td>No corresponde</td>
+  </tr>
+  <tr class="jubilado">
+    <td>Pedro</td>
+    <td>76</td>
+    <td>Si</td>
+    <td>Tabla de jubilación</td>
+  </tr>
+  <tr class="mayor">
+    <td>Pablo</td>
+    <td>18</td>
+    <td>Si</td>
+    <td>No corresponde</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Nombree</th>
+    <th>Edad</th>
+    <th>Es mayor de edad</th>
+    <th>Jubilación</th>
+  </tr>
+  <tr class={{esJubilado(persona.edad)}} *ngFor="let persona of personas;">
+    <td>{{persona.nombre}}</td>
+    <td>{{persona.edad}}</td>
+    <td *ngIf="persona.edad < 18; else mayorTemplate">No</td>
+    <td *ngIf="persona.edad > 65; else jubiladoTemplate">
+      <table>
+        <tr>
+          <td>Monto</td>
+          <td>Obra social</td>
+        </tr>
+        <tr>
+          <td>{{persona.jubilacion.monto}}</td>
+          <td>{{persona.jubilacion.obraSocial}}</td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+<ng-template #mayorTemplate>
+  <td>Si</td>
+</ng-template>
+
+<ng-template #jubiladoTemplate>
+  <td>No</td>
+</ng-template>
